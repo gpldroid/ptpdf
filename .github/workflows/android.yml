@@ -15,11 +15,6 @@ jobs:
       - uses: android-actions/setup-android@v3
       - name: Install Android SDK
         run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
-      - name: Copy website into Android assets
-        run: |
-          rm -rf android/app/src/main/assets
-          mkdir -p android/app/src/main/assets/web
-          cp -R web/. android/app/src/main/assets/web/
       - name: Install Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
