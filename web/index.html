@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ff1717">
+<meta name="description" content="PTPDF — smart PDF tools to merge, split, rotate, watermark and edit PDF files in your browser.">
+<title>PTPDF — Smart PDF Tool</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="PTPDF home"><span class="brand-mark">PDF</span><span>PTPDF</span></a>
+  <nav aria-label="Main navigation">
+    <a href="#tools">Tools</a><a href="#about">About</a>
+  </nav>
+  <button id="themeBtn" class="icon-btn" type="button" aria-label="Toggle theme">☾</button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">SMART PDF TOOL</span>
+    <h1>All PDF Tools</h1>
+    <p>Fast, simple PDF utilities with a mobile-first interface inspired by the reference design.</p>
+    <a class="primary-btn" href="#tools">Explore tools</a>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="paper paper-a">PDF</div><div class="paper paper-b">✎</div><div class="paper paper-c">＋</div>
+    <div class="mini-stack"><span>↗</span><span>↙</span><span>✦</span></div>
+  </div>
+</section>
+
+<section id="tools" class="tools-section">
+  <div class="section-heading"><div><span class="eyebrow">PDF TOOLBOX</span><h2>Everything you need</h2></div><span id="fileStatus" class="status">No file selected</span></div>
+  <div id="toolsGrid" class="tools-grid"></div>
+</section>
+
+<section id="about" class="about">
+  <div><span class="eyebrow">PRIVATE BY DESIGN</span><h2>Your files stay in your browser</h2></div>
+  <p>PTPDF performs supported PDF operations locally with PDF-LIB. The interface is responsive for phones, tablets and desktop screens.</p>
+</section>
+</main>
+
+<footer><span>PTPDF © 2026</span><span>Smart PDF Tools</span></footer>
+
+<input id="fileInput" type="file" accept="application/pdf" multiple hidden>
+<div id="modal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button id="closeModal" class="close-btn" type="button" aria-label="Close">×</button>
+    <h2 id="modalTitle">PDF Tool</h2>
+    <p id="modalHelp"></p>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
