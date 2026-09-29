@@ -7,9 +7,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class MainActivity extends Activity {
+    private WebView web;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WebView web = new WebView(this);
+        web = new WebView(this);
         setContentView(web);
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
@@ -20,8 +22,9 @@ public class MainActivity extends Activity {
         web.setWebViewClient(new WebViewClient());
         web.loadUrl("file:///android_asset/web/index.html");
     }
+
     @Override public void onBackPressed() {
-        WebView w=(WebView)findViewById(android.R.id.content).findViewById(android.R.id.content);
-        super.onBackPressed();
+        if (web != null && web.canGoBack()) web.goBack();
+        else super.onBackPressed();
     }
 }
