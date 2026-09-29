@@ -1,5 +1,22 @@
 plugins { id 'com.android.application' }
 
-android { namespace 'com.gpldroid.ptpdf'; compileSdk 35
-    defaultConfig { applicationId 'com.gpldroid.ptpdf'; minSdk 23; targetSdk 35; versionCode 1; versionName '1.0.0' }
+android {
+    namespace 'com.gpldroid.ptpdf'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.gpldroid.ptpdf'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+    }
+}
+
+tasks.register('syncWebAssets', Sync) {
+    from('../../web')
+    into('src/main/assets/web')
+}
+
+tasks.named('preBuild').configure {
+    dependsOn(tasks.named('syncWebAssets'))
 }
