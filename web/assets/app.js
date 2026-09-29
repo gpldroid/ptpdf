@@ -10,7 +10,7 @@ $("#closeModal").onclick=closeModal;
 modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
 $("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");$("#themeBtn").textContent=document.body.classList.contains("dark")?"☀":"☾"};
 input.addEventListener("change",()=>{selected=[...input.files];status.textContent=selected.length?selected.map(f=>f.name).join(", "):"No file selected"});
-if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+if("serviceWorker" in navigator && (location.protocol==="https:" || location.protocol==="http:"))window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 
 function openTool(id){
  const t=tools.find(x=>x[0]===id);title.textContent=t[1];help.textContent=t[2];
