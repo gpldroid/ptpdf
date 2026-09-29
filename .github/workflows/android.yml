@@ -3,6 +3,7 @@ name: Android Release
 on:
   push:
     branches: [main]
+    tags: ['build-*']
   workflow_dispatch:
 
 permissions:
@@ -60,10 +61,16 @@ jobs:
         working-directory: android
         run: gradle assembleRelease bundleRelease --no-daemon
 
-      - name: Verify signing
+      - name: Verify signing and bundled web assets
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose android/app/build/outputs/apk/release/app-release.apk
           test -s android/app/build/outputs/bundle/release/app-release.aab
+          unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -F "assets/web/index.html"
+          unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -F "assets/web/assets/vendor/pdf-lib.min.js"
+          unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -F "assets/web/assets/vendor/jszip.min.js"
+          unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -F "assets/web/assets/app.js"
+          unzip -l android/app/build/outputs/apk/release/app-release.apk | grep -F "assets/web/assets/styles.css"
+          ! unzip -p android/app/build/outputs/apk/release/app-release.apk assets/web/index.html | grep -F "cdn.jsdelivr.net"
 
       - name: Upload release files
         uses: actions/upload-artifact@v4
