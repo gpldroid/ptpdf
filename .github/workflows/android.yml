@@ -20,6 +20,10 @@ jobs:
           rm -rf android/app/src/main/assets
           mkdir -p android/app/src/main/assets/web
           cp -R web/. android/app/src/main/assets/web/
+      - name: Install Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
       - name: Build APK
         working-directory: android
         run: gradle assembleDebug --no-daemon
