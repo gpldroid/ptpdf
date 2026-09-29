@@ -1,4 +1,5 @@
 name: Android Release
+# Offline/online release validation build
 
 on:
   push:
